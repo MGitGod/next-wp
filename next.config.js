@@ -12,13 +12,24 @@ const { protocol, hostname, port, pathname } = new URL(
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    remotePatterns: [
-      {
-        protocol: protocol.slice(0, -1),
-        hostname,
-        port,
-        pathname: `${pathname}/**`,
-      },
-    ],
+  domains: [
+  process.env.WORDPRESS_API_URL.match(/(?!(w+).)\w(?:\w+.)+\w+/)[0], // Valid WP Image domain.
+  '0.gravatar.com',
+  '1.gravatar.com',
+  '2.gravatar.com',
+  'secure.gravatar.com',
+  ],
   },
-};
+  }
+// module.exports = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: protocol.slice(0, -1),
+//         hostname,
+//         port,
+//         pathname: `${pathname}/**`,
+//       },
+//     ],
+//   },
+// };
